@@ -31,8 +31,8 @@ func readReplacementsFromCSV(filePath string) ([]Replacement, error) {
 	for _, record := range records {
 		if len(record) >= 2 {
 			replacement := Replacement{
-				Original:    record[0],
-				Replacement: record[1],
+				Original:    strings.TrimSpace(record[0]),
+				Replacement: strings.TrimSpace(record[1]),
 			}
 			replacements = append(replacements, replacement)
 		}
