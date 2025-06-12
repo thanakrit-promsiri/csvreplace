@@ -65,7 +65,20 @@ func readReplacementsFromCSV(filePath string) ([]Replacement, error) {
 
 	CsvNewWriter("replacementSort.csv", DictionaryWordList)
 
-	for _, record := range records {
+	file2, err := os.Open("replacementSort.csv")
+	if err != nil {
+		return nil, err
+	} else {
+		defer file.Close()
+	}
+
+	reader2 := csv.NewReader(file2)
+	records2, err := reader2.ReadAll()
+	if err != nil {
+		return nil, err
+	}
+
+	for _, record := range records2 {
 		if len(record) >= 2 {
 			replacement := Replacement{
 				Original:    strings.TrimSpace(record[0]),
